@@ -1,0 +1,1056 @@
+:root {
+  --default-font:
+    "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Montserrat", sans-serif;
+}
+
+/* Modern, Clean, Techy - Dark Theme */
+:root {
+  /* Core Palette */
+  --background-color: #0D1117;     /* Deep dark blue/grey - Primary background */
+  --surface-color: #161B22;        /* Slightly Lighter Dark surface for cards, elements */
+  --default-color: #C9D1D9;         /* Light grey - Main text color */
+  --heading-color: #E6EDF3;         /* Brighter white/light grey - Headings */
+  --accent-color: #6366F1;          /* Tech blue/indigo - Buttons, links, highlights */
+  --accent-hover-color: #4F46E5;    /* Slightly darker/more intense accent for hover */
+  --contrast-color: #FFFFFF;        /* White - Text on accent backgrounds */
+  --border-color: #30363D;          /* Subtle border color for dark theme */
+
+  /* Navigation Specific (Dark Theme) */
+  --nav-color: #C9D1D9;                            /* Default nav link color */
+  --nav-hover-color: var(--accent-color);          /* Nav link hover/active color */
+  --nav-mobile-background-color: #161B22;          /* Mobile nav background (surface color) */
+  --nav-dropdown-background-color: #161B22;       /* Dropdown background (surface color) */
+  --nav-dropdown-color: #C9D1D9;                   /* Dropdown link color */
+  --nav-dropdown-hover-color: var(--accent-color); /* Dropdown link hover color */
+}
+
+/*
+  The .light-background class can be used for sections that need a lighter touch,
+  even within an overall dark theme, or for future light mode flexibility.
+*/
+.light-background {
+  --background-color: #1F2937; /* A lighter dark, e.g., Tailwind gray-800 */
+  --surface-color: #374151;    /* Tailwind gray-700 for cards in this lighter dark section */
+  --default-color: #D1D5DB;     /* Lighter text for this section */
+  --heading-color: #F9FAFB;     /* Brightest text for this section */
+  --border-color: #4B5563;      /* Border for this section */
+}
+
+/*
+  If a section explicitly uses .dark-background, ensure it aligns with the main dark theme.
+  This can be identical to the root, or slightly varied if needed.
+*/
+.dark-background {
+  --background-color: #0A0C10; /* Can be even deeper, or var(--background-color) */
+  --default-color: var(--default-color);
+  --heading-color: var(--heading-color);
+  --surface-color: #101419; /* Surface for very dark sections */
+  --contrast-color: var(--contrast-color);
+  --border-color: #21262D;
+}
+
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: var(--accent-hover-color); /* Using defined hover color */
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+}
+
+/* PHP Email Form Messages
+------------------------------*/
+.php-email-form .error-message {
+  display: none;
+  background: #B91C1C; /* Darker Red for dark mode */
+  color: #FEE2E2;      /* Light Red text */
+  text-align: left;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.php-email-form .sent-message {
+  display: none;
+  color: #D1FAE5;      /* Light Green text */
+  background: #065F46; /* Darker Green for dark mode */
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.php-email-form .loading {
+  display: none;
+  background: var(--surface-color);
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+}
+
+.php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid var(--accent-color);
+  border-top-color: var(--surface-color); /* Or a lighter shade of surface */
+  animation: php-email-form-loading 1s linear infinite;
+}
+
+@keyframes php-email-form-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Header
+--------------------------------------------------------------*/
+.header {
+  color: var(--nav-color); /* Use nav-color for header text elements */
+  background-color: var(--background-color); /* Use main background */
+  padding: 15px 0;
+  transition: all 0.5s;
+  z-index: 997;
+  border-bottom: 1px solid var(--border-color); /* Add subtle border */
+}
+
+.header .logo {
+  line-height: 1;
+}
+
+.header .logo img {
+  max-height: 36px;
+  margin-right: 8px;
+}
+
+.header .logo h1 {
+  font-size: 26px;
+  margin: 0;
+  font-weight: 600;
+  color: var(--heading-color); /* Heading color for logo text */
+}
+
+.header .btn-getstarted,
+.header .btn-getstarted:focus {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  font-size: 14px;
+  padding: 8px 25px;
+  margin: 0 0 0 30px;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.header .btn-getstarted:hover,
+.header .btn-getstarted:focus:hover {
+  color: var(--contrast-color);
+  background: var(--accent-hover-color); /* Use defined hover color */
+}
+
+@media (max-width: 1200px) {
+  .header .logo {
+    order: 1;
+  }
+
+  .header .btn-getstarted {
+    order: 2;
+    margin: 0 15px 0 0;
+    padding: 6px 15px;
+  }
+
+  .header .navmenu {
+    order: 3;
+  }
+}
+
+/* Global Header on Scroll
+------------------------------*/
+.scrolled .header {
+  background-color: color-mix(in srgb, var(--background-color), transparent 10%); /* Slightly transparent version of background */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Add shadow on scroll */
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Desktop Navigation */
+@media (min-width: 1200px) {
+  .navmenu {
+    padding: 0;
+  }
+
+  .navmenu ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+
+  .navmenu li {
+    position: relative;
+  }
+
+  .navmenu > ul > li {
+    white-space: nowrap;
+    padding: 15px 14px; /* Adjusted from 10px to match other nav links */
+  }
+
+   .navmenu > ul > li:last-child {
+    padding-right: 0;
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-color);
+    font-size: 15px;
+    padding: 0 2px;
+    font-family: var(--nav-font);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+    position: relative;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    transition: 0.3s;
+  }
+
+  .navmenu > ul > li > a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -6px; /* Original position */
+    left: 0;
+    background-color: var(--accent-color);
+    visibility: hidden;
+    width: 0px;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .navmenu a:hover:before,
+  .navmenu li:hover > a:before,
+  .navmenu .active:before {
+    visibility: visible;
+    width: 100%;
+  }
+
+  .navmenu li:hover > a,
+  .navmenu .active,
+  .navmenu .active:focus {
+    color: var(--nav-hover-color);
+  }
+
+  .navmenu .dropdown ul {
+    margin: 0;
+    padding: 10px 0;
+    background: var(--nav-dropdown-background-color);
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    left: 14px;
+    top: 130%;
+    opacity: 0;
+    transition: 0.3s;
+    border-radius: 4px;
+    z-index: 99;
+    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.2); /* Darker shadow for dark mode */
+    border: 1px solid var(--border-color);
+  }
+
+  .navmenu .dropdown ul li {
+    min-width: 200px;
+  }
+
+  .navmenu .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    color: var(--nav-dropdown-color);
+  }
+
+  .navmenu .dropdown ul a i {
+    font-size: 12px;
+  }
+
+  .navmenu .dropdown ul a:hover,
+  .navmenu .dropdown ul .active:hover,
+  .navmenu .dropdown ul li:hover > a {
+    color: var(--nav-dropdown-hover-color);
+    background-color: color-mix(in srgb, var(--accent-color), transparent 90%); /* Subtle hover background */
+  }
+
+  .navmenu .dropdown:hover > ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+  }
+
+  .navmenu .dropdown .dropdown ul {
+    top: 0;
+    left: -90%;
+    visibility: hidden;
+  }
+
+  .navmenu .dropdown .dropdown:hover > ul {
+    opacity: 1;
+    top: 0;
+    left: -100%;
+    visibility: visible;
+  }
+}
+
+/* Mobile Navigation */
+@media (max-width: 1199px) {
+  .mobile-nav-toggle {
+    color: var(--nav-color); /* Use nav-color */
+    font-size: 28px;
+    line-height: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .navmenu {
+    padding: 0;
+    z-index: 9997;
+  }
+
+  .navmenu ul {
+    display: none;
+    list-style: none;
+    position: absolute;
+    inset: 60px 20px 20px 20px; /* Keep original inset */
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 6px;
+    background-color: var(--nav-mobile-background-color);
+    border: 1px solid var(--border-color); /* Use defined border color */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Darker shadow */
+    overflow-y: auto;
+    transition: 0.3s;
+    z-index: 9998;
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-dropdown-color);
+    padding: 10px 20px;
+    font-family: var(--nav-font);
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+    background-color: color-mix(in srgb, var(--accent-color), transparent 85%); /* Lighter accent */
+  }
+
+  .navmenu a i:hover,
+  .navmenu a:focus i:hover {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+  }
+
+  .navmenu a:hover,
+  .navmenu .active,
+  .navmenu .active:focus {
+    color: var(--nav-dropdown-hover-color);
+    background-color: color-mix(in srgb, var(--accent-color), transparent 90%); /* Subtle hover for full item */
+  }
+
+  .navmenu .active i,
+  .navmenu .active:focus i {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+    transform: rotate(180deg);
+  }
+
+  .navmenu .dropdown ul {
+    position: static;
+    display: none;
+    z-index: 99;
+    padding: 10px 0;
+    margin: 10px 20px;
+    background-color: var(--nav-dropdown-background-color); /* Already set, fine */
+    border: 1px solid color-mix(in srgb, var(--border-color), transparent 50%); /* Softer border for nested */
+    border-radius: 4px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .navmenu .dropdown ul ul {
+    background-color: color-mix(in srgb, var(--surface-color), #000000 10%); /* Slightly darker nested */
+  }
+
+  .navmenu .dropdown > .dropdown-active {
+    display: block;
+    /* background-color: rgba(33, 37, 41, 0.03); remove this, rely on a:hover styles */
+  }
+
+  .mobile-nav-active {
+    overflow: hidden;
+  }
+
+  .mobile-nav-active .mobile-nav-toggle {
+    color: var(--contrast-color); /* Make toggle icon white when overlay is active */
+    position: absolute;
+    font-size: 32px;
+    top: 15px;
+    right: 15px;
+    margin-right: 0;
+    z-index: 9999;
+  }
+
+  .mobile-nav-active .navmenu {
+    position: fixed;
+    overflow: hidden;
+    inset: 0;
+    background: rgba(13, 17, 23, 0.9); /* Dark overlay, based on background-color */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: 0.3s;
+  }
+
+  .mobile-nav-active .navmenu > ul {
+    display: block;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Global Footer
+--------------------------------------------------------------*/
+.footer {
+  color: var(--default-color);
+  background-color: var(--background-color); /* Main background */
+  font-size: 14px;
+  position: relative;
+  border-top: 1px solid var(--border-color); /* Add border */
+}
+
+.footer .footer-top {
+  padding-top: 50px;
+}
+
+.footer .footer-about .logo {
+  line-height: 1;
+  margin-bottom: 25px;
+}
+
+.footer .footer-about .logo img {
+  max-height: 40px;
+  margin-right: 6px;
+}
+
+.footer .footer-about .logo span {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.footer .footer-about p {
+  font-size: 14px;
+  font-family: var(--heading-font); /* Keeping as is, though default-font might be more common for paragraphs */
+}
+
+.footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color); /* Use defined border color */
+  font-size: 16px;
+  color: var(--default-color); /* Use default text color */
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.footer .social-links a:hover {
+  color: var(--contrast-color); /* Text color on accent background */
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.footer h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--heading-color); /* Use heading color for footer titles */
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.footer .footer-links {
+  margin-bottom: 30px;
+}
+
+.footer .footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .footer-links ul i {
+  padding-right: 2px;
+  font-size: 12px;
+  line-height: 0;
+  color: var(--accent-color); /* Make icons accent color */
+}
+
+.footer .footer-links ul li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.footer .footer-links ul li:first-child {
+  padding-top: 0;
+}
+
+.footer .footer-links ul a {
+  color: var(--default-color); /* Use default text color for links */
+  display: inline-block;
+  line-height: 1;
+}
+
+.footer .footer-links ul a:hover {
+  color: var(--accent-color);
+}
+
+.footer .footer-contact p {
+  margin-bottom: 5px;
+}
+
+.footer .copyright {
+  padding: 25px 0;
+  border-top: 1px solid var(--border-color); /* Use defined border color */
+}
+
+.footer .copyright p {
+  margin-bottom: 0;
+}
+
+.footer .credits {
+  margin-top: 8px;
+  font-size: 13px;
+}
+.footer .credits a { /* Ensure credits link is also styled for dark theme */
+    color: var(--accent-color);
+}
+.footer .credits a:hover {
+    color: var(--accent-hover-color);
+}
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px; /* Start off-screen */
+  z-index: 99999;
+  background-color: var(--accent-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.scroll-top i {
+  font-size: 24px;
+  color: var(--contrast-color);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: var(--accent-hover-color); /* Use defined hover color */
+  color: var(--contrast-color);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Page Titles & Breadcrumbs
+--------------------------------------------------------------*/
+.page-title {
+  color: var(--default-color);
+  background-color: var(--surface-color); /* Use surface color for page title background */
+  padding: 25px 0;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-title h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--heading-color); /* Ensure heading color */
+}
+
+.page-title .breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.page-title .breadcrumbs ol li + li {
+  padding-left: 10px;
+}
+
+.page-title .breadcrumbs ol li + li::before {
+  content: "/";
+  display: inline-block;
+  padding-right: 10px;
+  color: color-mix(in srgb, var(--default-color), transparent 50%); /* Make separator less prominent */
+}
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color); /* Default section background */
+  padding: 60px 0;
+  scroll-margin-top: 82px; /* Adjust if header height changes */
+  overflow: clip;
+}
+
+@media (max-width: 1199px) {
+  section,
+  .section {
+    scroll-margin-top: 76px; /* Adjust based on mobile header height */
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  text-align: center;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: var(--heading-color); /* Ensure heading color */
+}
+
+.section-title h2:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--accent-color);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.section-title p {
+  margin-bottom: 0;
+  color: var(--default-color); /* Ensure default color */
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  padding: 80px 0;
+  background-color: var(--background-color); /* Ensure hero uses main background or specific dark */
+}
+
+@media (min-width: 992px) {
+  .hero .hero-content {
+    margin-bottom: 0;
+  }
+}
+
+.hero .hero-tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 88%); /* Lighter accent bg */
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%));
+}
+
+.hero .hero-tag i {
+  color: var(--accent-color);
+  margin-right: 0.5rem;
+}
+
+.hero .hero-tag span {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+}
+
+.hero h1 .highlight {
+  color: var(--accent-color);
+}
+
+@media (min-width: 992px) {
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+}
+
+.hero .lead {
+  color: var(--default-color); /* Use default color */
+  margin-bottom: 1.5rem;
+  opacity: 0.85; /* Slightly less prominent */
+}
+
+.hero .hero-features {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2rem;
+}
+
+.hero .hero-features li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  color: var(--default-color); /* Ensure text color */
+}
+
+.hero .hero-features li i {
+  color: var(--accent-color);
+  margin-right: 0.5rem;
+}
+
+.hero .hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero .hero-cta .btn-primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--contrast-color);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.hero .hero-cta .btn-primary:hover {
+  background-color: var(--accent-hover-color);
+  border-color: var(--accent-hover-color);
+}
+
+.hero .hero-cta .btn-link {
+  color: var(--accent-color); /* Link should be accent */
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero .hero-cta .btn-link i {
+  margin-right: 0.5rem;
+}
+
+.hero .hero-cta .btn-link:hover {
+  color: var(--accent-hover-color);
+}
+
+.hero .hero-image-wrapper {
+  position: relative;
+  padding: 0 40px;
+}
+
+.hero .hero-image-wrapper .hero-image {
+  border-radius: 10px;
+}
+
+.hero .hero-image-wrapper .stat-card {
+  position: absolute;
+  background-color: var(--surface-color);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Darker shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 150px;
+  border: 1px solid var(--border-color);
+}
+
+.hero .hero-image-wrapper .stat-card.top-right {
+  top: 40px;
+  right: 0px;
+}
+
+.hero .hero-image-wrapper .stat-card.bottom-left {
+  bottom: 40px;
+  left: 0px;
+}
+
+.hero .hero-image-wrapper .stat-card .stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 0.25rem;
+}
+
+.hero .hero-image-wrapper .stat-card .stat-label {
+  font-size: 0.875rem;
+  color: var(--default-color); /* Use default text color */
+  margin-bottom: 0.5rem;
+}
+
+.hero .hero-image-wrapper .stat-card .stat-icon {
+  align-self: flex-end;
+  font-size: 1.25rem;
+  color: var(--accent-color); /* Make icon accent */
+  opacity: 0.7;
+}
+
+@media (max-width: 575px) {
+  .hero .hero-image-wrapper {
+    padding: 0;
+  }
+
+  .hero .hero-image-wrapper .stat-card {
+    position: relative;
+  }
+
+  .hero .hero-image-wrapper .stat-card.top-right,
+  .hero .hero-image-wrapper .stat-card.bottom-left {
+    inset: auto;
+    margin-top: 30px;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+/* ... (other styles) ... */
+
+.contact .contact-form-container .php-email-form .form-control {
+  height: auto;
+  padding: 14px 20px;
+  border-radius: 8px; /* Slightly less rounded for tech look */
+  background-color: var(--surface-color); /* Dark input background */
+  border: 1px solid var(--border-color);
+  color: var(--default-color); /* Light text for input */
+  transition: all 0.3s ease;
+}
+
+.contact .contact-form-container .php-email-form .form-control:focus {
+  background-color: color-mix(in srgb, var(--surface-color), #ffffff 5%); /* Slightly lighter on focus */
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 80%);
+}
+
+.contact .contact-form-container .php-email-form .form-control::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 50%); /* Placeholder color */
+}
+
+/* ... (rest of your CSS) ... */
+
+
+/* Ensure hover/focus states for buttons in various sections use --accent-hover-color */
+.about .about-content-box .btn-discover:hover:before {
+  background: var(--accent-hover-color);
+}
+.faq .faq-cta .btn-primary:hover {
+  background-color: var(--accent-hover-color);
+  border-color: var(--accent-hover-color);
+}
+.call-to-action .cta-buttons .btn-primary:hover {
+  background-color: var(--accent-hover-color);
+}
+.contact .contact-form-container .php-email-form button:hover {
+  background-color: var(--accent-hover-color);
+}
+.service-details .service-sidebar .service-overview .overview-content .cta-button .btn-get-started:hover {
+  background: var(--accent-hover-color);
+}
+/*--------------------------------------------------------------
+# Pricing Section - Dark Theme
+--------------------------------------------------------------*/
+.pricing.section {
+  background-color: var(--surface-color); /* Use surface for a slightly distinct background */
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.pricing .section-title h2 {
+  color: var(--heading-color);
+}
+
+.pricing .section-title p {
+  color: var(--default-color);
+}
+
+.pricing .table-responsive {
+  border: 1px solid var(--border-color);
+  border-radius: 8px; /* Add a slight radius to the container */
+  overflow: hidden; /* Ensures border-radius clips the table */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+}
+
+.pricing .table {
+  background-color: var(--surface-color); /* Table itself has a surface color */
+  color: var(--default-color); /* Default text color for table content */
+  margin-bottom: 0; /* Remove default Bootstrap margin if wrapped in table-responsive */
+}
+
+.pricing .table th,
+.pricing .table td {
+  border-color: var(--border-color); /* Use our defined border color */
+  vertical-align: middle;
+  padding: 1rem 0.75rem; /* Consistent padding */
+}
+
+.pricing .table thead th {
+  background-color: var(--background-color); /* Darker header, main background */
+  color: var(--heading-color);
+  border-bottom: 2px solid var(--accent-color); /* Accent color underline for header */
+  font-weight: 600; /* Make headers slightly bolder */
+}
+
+/* Striped table rows for dark theme */
+.pricing .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: color-mix(in srgb, var(--surface-color), var(--background-color) 20%); /* Slightly darker than surface for stripes */
+  color: var(--default-color);
+}
+.pricing .table-striped > tbody > tr:nth-of-type(even) > * {
+  background-color: var(--surface-color); /* Base surface color for even rows */
+  color: var(--default-color);
+}
+
+
+/* Hover state for table rows */
+.pricing .table-hover > tbody > tr:hover > * {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 85%); /* Accent color on hover, semi-transparent */
+  color: var(--heading-color); /* Brighter text on hover */
+}
+
+/* Specific cell styling */
+.pricing .table td:nth-child(1) { /* Project Type column */
+  font-weight: 500; /* Slightly bolder for project type */
+  color: var(--heading-color); /* Make project type text brighter */
+}
+
+/* Pricing note text */
+.pricing p.fst-italic {
+  color: var(--default-color);
+  opacity: 0.8; /* Make it slightly less prominent */
+}
+
+.pricing p.fst-italic a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.pricing p.fst-italic a:hover {
+  color: var(--accent-hover-color);
+  text-decoration: underline;
+}
